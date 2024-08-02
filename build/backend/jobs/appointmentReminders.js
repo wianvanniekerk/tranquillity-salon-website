@@ -86,7 +86,7 @@ async function sendAppointmentReminders() {
                                     </td>
                                 </tr>
                             </table>
-                            <p style="font-size: 16px; line-height: 1.5; margin-top: 20px;">If you need to reschedule or have any questions, please contact us at (123) 456-7890.</p>
+                            <p style="font-size: 16px; line-height: 1.5; margin-top: 20px;">If you need to reschedule or have any questions, please contact us at (083) 260-0148.</p>
                             <p style="font-size: 16px; line-height: 1.5;">We look forward to seeing you!</p>
                         </td>
                     </tr>

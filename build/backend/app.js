@@ -13,16 +13,18 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../../../Node/build/frontend/views'));
-
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../../../Node/build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { 
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    }
 }));
 
 app.use(flash());

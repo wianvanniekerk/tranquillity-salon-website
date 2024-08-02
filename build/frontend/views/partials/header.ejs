@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="https://tranquillitysalon.co.za/wp-content/uploads/2020/05/cropped-tranquility512-192x192.jpg" type="image/x-icon">
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+  <header class="bg-white shadow-md relative z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center" aria-label="Tranquillity Home">
+        <img src="https://res.cloudinary.com/daiaxqvvr/image/upload/v1721459009/tranquility-logo-text_jdqs4f.png" alt="Tranquillity Logo" class="ms-2 h-16">
+      </a>
+      <nav class="hidden md:flex items-center space-x-8" aria-label="Primary Navigation">
+        <a href="/" class="text-gray-700 hover:text-teal-600">Home</a>
+        <div class="relative group">
+          <a href="#" class="text-gray-700 hover:text-teal-600">Products</a>
+          <div class="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out z-50">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <a href="/products/cleanse" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Cleanse</a>
+              <a href="/products/condition" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Condition</a>
+              <a href="/products/exfoliate" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Exfoliate</a>
+              <a href="/products/moisture" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Moisture</a>
+              <a href="/products/actives" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Actives</a>
+              <a href="/products/age-intelligent" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Age Intelligent</a>
+              <a href="/products/man" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Man</a>
+              <a href="/products/y-skin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Y:Skin</a>
+              <a href="/products/sun-c" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Sun-C</a>
+              <a href="/products/additives" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Additives</a>
+              <a href="/products/starter-packs" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Starter-Packs</a>
+            </div>
+          </div>
+        </div>
+        <a href="/inquiries/contact" class="text-gray-700 hover:text-teal-600">Contact</a>
+        <a href="/login" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition duration-300">Login</a>
+      </nav>
+      <div class="md:hidden flex items-center">
+        <a href="/login" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 mr-4">Login</a>
+        <button class="text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu">
+          <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+</body>
+</html>

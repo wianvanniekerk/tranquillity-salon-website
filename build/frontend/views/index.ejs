@@ -1,0 +1,114 @@
+<%- include('partials/header', { title: 'Tranquillity' }) %>
+<style>
+  .bg-image {
+    background-image: url('https://res.cloudinary.com/daiaxqvvr/image/upload/v1721741522/back1_apge37.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    transform: scale(1.05);
+  }
+  .bg-loaded {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bgImage = document.querySelector('.bg-image');
+    const img = new Image();
+    img.src = getComputedStyle(bgImage).backgroundImage.slice(4, -1).replace(/['"]/g, '');
+    img.onload = () => {
+      bgImage.classList.add('bg-loaded');
+    };
+  });
+</script>
+<div class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+  <header class="text-white bg-image">
+    <div class="container mx-auto px-4 lg:px-8 py-20 text-center">
+      <a href="/">
+        <img src="https://res.cloudinary.com/daiaxqvvr/image/upload/v1721458782/tranquility-logo_exggpt.png" alt="Welcome to Tranquillity Beauty Salon" class="mx-auto h-48 md:h-56 lg:h-64 mb-8 transform hover:scale-110 transition-transform duration-300" loading="lazy">
+      </a>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white drop-shadow-lg">Discover Your Skin's Potential</h1>
+      <p class="text-xl md:text-2xl mb-10 text-white opacity-90 max-w-2xl mx-auto">Embark on a journey to healthier, glowing skin powered by Nimue&#174;</p>
+      <a href="/inquiries/contact" class="bg-white text-teal-600 hover:bg-teal-50 hover:text-teal-700 font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg hover:shadow-xl text-lg">
+        Book Your Consultation
+      </a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 lg:px-8 py-16">
+    <section class="bg-white rounded-xl shadow-2xl overflow-hidden mb-20">
+      <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-4xl font-bold text-gray-800 mb-6">About Us</h2>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+            At Tranquillity, we're dedicated to helping you achieve your skin goals. Our certified professionals use personalized treatments to address your unique skincare needs, ensuring a radiant and healthy complexion.
+          </p>
+          <a href="/inquiries/about" class="text-teal-600 hover:text-teal-700 font-semibold text-lg inline-flex items-center group">
+            Learn More About Us
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+        <div class="order-1 md:order-2">
+          <img src="https://res.cloudinary.com/daiaxqvvr/image/upload/v1721741593/about2_vpjhcj.avif" alt="About Tranquillity Salon" class="object-cover rounded-lg w-full h-80 md:h-96 lg:h-[32rem] shadow-lg" />
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Skin Analysis</h3>
+          <p class="text-gray-600 mb-6">Comprehensive assessment of your skin type and concerns using advanced technology.</p>
+          <a href="/inquiries/skin-analysis" class="text-teal-600 hover:text-teal-700 font-semibold inline-flex items-center group">
+            Learn More
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Product Consultations</h3>
+          <p class="text-gray-600 mb-6">Expert advice on the best products for your unique skin type and concerns.</p>
+          <a href="/inquiries/product-consultation" class="text-teal-600 hover:text-teal-700 font-semibold inline-flex items-center group">
+            Learn More
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Continuous Follow-Ups</h3>
+          <p class="text-gray-600 mb-6">We are here for you in every step of your skincare journey, ensuring lasting results.</p>
+          <a href="#" class="text-teal-600 hover:text-teal-700 font-semibold inline-flex items-center group">
+            Learn More
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<%- include('partials/footer') %>
+

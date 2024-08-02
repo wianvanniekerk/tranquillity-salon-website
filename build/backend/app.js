@@ -17,7 +17,7 @@ const flash = require('connect-flash');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../build/frontend/views'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../../../build')));
+app.use(express.static(path.join(__dirname, '../../build')));
 
 const sessionStore = new MySQLStore({
     expiration: 86400000,

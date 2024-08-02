@@ -10,17 +10,33 @@ const mailRoutes = require('./routes/mail.routes');
 const formsRoutes = require('./routes/forms.routes');
 const path = require('path');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const dbConfig = require('./config/db.config');
 const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../../frontend/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionStore = new MySQLStore({
+    expiration: 86400000,
+    createDatabaseTable: true,
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            sessionId: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+}, dbConfig);
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: sessionStore,
     cookie: { 
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict'

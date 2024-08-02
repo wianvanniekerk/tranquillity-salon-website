@@ -112,7 +112,7 @@ router.post('/contact', async (req, res) => {
                             <p><strong>Email:</strong> ${email}</p>
                             <p><strong>Message:</strong> ${message}</p>
                         </div>
-                        <p>Our team will be in contact with you soonest.</p>
+                        <p>Our team will be in contact with you as soon as possible.</p>
                         <div class="fine-print">
                             <p>If you didn't fill out this form, you can safely ignore this email. Someone might have accidentally entered your email address.</p>
                         </div>

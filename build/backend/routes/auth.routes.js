@@ -43,6 +43,7 @@ router.post('/login', async (req, res) => {
             req.session.userType = user.UserType;
             req.flash('success', 'You have logged in successfully!');
 
+            console.log('Redirecting to:', req.session.returnTo || '/user/profile'); // Log redirect target
             const redirectTo = req.session.returnTo || '/user/profile';
             delete req.session.returnTo;
             res.redirect(redirectTo);
@@ -52,6 +53,7 @@ router.post('/login', async (req, res) => {
         res.render('registration/login', { errorMessage: 'Login failed. Please try again.' });
     }
 });
+
 
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {

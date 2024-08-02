@@ -1,0 +1,53 @@
+<%- include('../partials/header', { title: 'Product Details' }) %>
+<div class="bg-gray-100 py-8">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="px-6 py-4 bg-gradient-to-r from-teal-400 to-teal-500 text-white">
+        <h2 class="text-2xl font-bold"><%= product.ProductName %></h2>
+      </div>
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flex items-center justify-center h-64 overflow-hidden">
+          <img src="<%= product.Image %>" alt="<%= product.ProductName %>" class="object-contain h-full" />
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Product Details</h3>
+          <p class="text-gray-600 mb-4"><%= product.Description %></p>
+          <p class="text-gray-600 mb-4"><strong>Skin Type Recommendation:</strong> 
+            <% 
+              const classifications = product.SkinClassificationNames.split(', ');
+              classifications.forEach(name => {
+                let colorClass;
+                switch(name) {
+                  case 'Environmentally Damaged':
+                    colorClass = 'text-orange-500';
+                    break;
+                  case 'Hyperpigmented':
+                    colorClass = 'text-blue-700';
+                    break;
+                  case 'Problematic':
+                    colorClass = 'text-green-500';
+                    break;
+                  case 'Interactive':
+                    colorClass = 'text-indigo-400';
+                    break;
+                  default:
+                    colorClass = '';
+                }
+            %>
+            <% if (colorClass) { %>
+            <span class="<%= colorClass %>"><%= name %></span><% if (name !== classifications[classifications.length - 1]) { %>, <% } %>
+            <% } %>
+            <% }); %>
+          </p>
+          <div class="mt-4">
+            <span class="text-gray-900 font-bold text-xl">R<%= product.Price.toFixed(2) %></span>
+          </div>
+          <div class="mt-4">
+            <a href="/inquiries/skin-analysis" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50">Inquire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

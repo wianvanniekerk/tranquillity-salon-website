@@ -1,0 +1,106 @@
+<%- include('../partials/header', { title: user.FirstName + '\'s Profile'}) %>
+
+<div class="bg-gray-100 py-8">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="px-6 py-4 bg-gradient-to-r from-teal-400 to-teal-500 text-white">
+        <h2 class="text-2xl font-bold"><%= user.FirstName %>'s Profile</h2>
+      </div>
+
+      <% if (successMessage.length > 0) { %>
+        <div class="m-6 p-4 bg-green-100 text-green-700 border border-green-400 rounded">
+          <%= successMessage %>
+        </div>
+      <% } %>
+      <% if (errorMessage.length > 0) { %>
+        <div class="m-6 p-4 bg-red-100 text-red-700 border border-red-400 rounded">
+          <%= errorMessage %>
+        </div>
+      <% } %>
+
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Personal Information</h2>
+          <p class="text-gray-600"><strong>Name:</strong> <%= user.FirstName %> <%= user.LastName %></p>
+          <p class="text-gray-600"><strong>Email:</strong> <%= user.Email %></p>
+          <p class="text-gray-600"><strong>Phone:</strong> <%= user.PhoneNumber %></p>
+          <p class="text-gray-600"><strong>Address:</strong> <%= user.Address %>, <%= user.Area %>, <%= user.PostalCode %></p>
+          <p class="text-gray-600"><strong>Date of Birth:</strong> <%= new Date(user.DateOfBirth).toDateString() %></p>
+          <p class="text-gray-600"><strong>Registered At:</strong> <%= new Date(user.RegistrationDate).toDateString() %></p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Appointments</h2>
+          <% if (appointments.length > 0) { %>
+            <ul class="space-y-4">
+              <% appointments.forEach(appointment => { %>
+                <li class="border-b pb-2">
+                  <p class="text-gray-600"><strong>Date:</strong> <%= new Date(appointment.AppointmentDate).toDateString() %></p>
+                  <p class="text-gray-600"><strong>Type:</strong> <%= appointment.AppointmentType %></p>
+                  <p class="text-gray-600"><strong>Status:</strong> <%= appointment.Status %></p>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p class="text-gray-600">No appointments found.</p>
+          <% } %>
+        </div>
+
+        <!-- Skin Profile -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Skin Profile</h2>
+          <% if (clientSkinProfiles.length > 0) { %>
+            <ul class="space-y-4">
+              <% clientSkinProfiles.forEach(clientSkinProfile => { %>
+                <li class="border-b pb-2">
+                  <p class="text-gray-600"><strong>Skin Classification:</strong> <%= clientSkinProfile.SkinClassificationName %></p>
+                  <p class="text-gray-600"><strong>Allergies:</strong> <%= clientSkinProfile.Allergies %></p>
+                  <p class="text-gray-600"><strong>Last Analysis:</strong> <%= new Date(clientSkinProfile.LastAnalysisDate).toDateString() %></p>
+                  <p class="text-gray-600"><strong>Next Follow-up:</strong> <%= new Date(clientSkinProfile.NextFollowUpDate).toDateString() %></p>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p class="text-gray-600">No skin profile details found.</p>
+          <% } %>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Orders</h2>
+          <% if (orders.length > 0) { %>
+            <ul class="space-y-4">
+              <% orders.forEach(order => { %>
+                <li class="border-b pb-2">
+                  <p class="text-gray-600"><strong>Date:</strong> <%= new Date(order.OrderDate).toDateString() %></p>
+                  <p class="text-gray-600"><strong>Total Amount:</strong> R<%= order.TotalAmount.toFixed(2) %></p>
+                  <p class="text-gray-600"><strong>Status:</strong> <%= order.Status %></p>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p class="text-gray-600">No orders found.</p>
+          <% } %>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Product Usage</h2>
+          <% if (productUsage.length > 0) { %>
+            <ul class="space-y-4">
+              <% productUsage.forEach(usage => { %>
+                <li class="border-b pb-2">
+                  <p class="text-gray-600"><strong>Product:</strong> <%= usage.ProductName %></p>
+                  <p class="text-gray-600"><strong>Purchased:</strong> <%= new Date(usage.PurchaseDate).toDateString() %></p>
+                  <p class="text-gray-600"><strong>Estimated Finish:</strong> <%= new Date(usage.EstimatedFinishDate).toDateString() %></p>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p class="text-gray-600">No products found.</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

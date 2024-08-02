@@ -1,0 +1,77 @@
+<%- include('../partials/header', { title: 'Contact Us' }) %>
+<div class="bg-gray-100 py-8">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="px-6 py-4 bg-gradient-to-r from-teal-400 to-teal-500 text-white">
+        <h1 class="text-3xl font-bold">Contact Us</h1>
+        <p class="text-xl">We'd love to hear from you. Reach out to us with any questions or concerns.</p>
+      </div>
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Get in Touch</h2>
+            <p class="text-gray-600">
+              Whether you have questions about our services, need help with a product, or want to provide feedback, our team is here to assist you.
+            </p>
+          </section>
+          <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Contact Information</h2>
+            <% staffMembers.forEach(staff => { %>
+              <div class="mb-4">
+                <h3 class="text-xl font-semibold text-gray-700"><%= staff.Name %></h3>
+                <p class="text-gray-600">
+                  <strong>Email:</strong> <a href="mailto:<%= staff.Email %>" class="text-teal-600 hover:text-teal-700"><%= staff.Email %></a><br>
+                  <strong>Phone:</strong> <a href="tel:<%= staff.PhoneNumber %>" class="text-teal-600 hover:text-teal-700"><%= formatPhoneNumber(staff.PhoneNumber) %></a><br>
+                  <% if (staff.Position) { %>
+                    <strong>Position:</strong> <%= staff.Position %><br>
+                  <% } %>
+                </p>
+              </div>
+            <% }); %>
+            <p class="text-gray-600 mt-4">
+              <strong>Address:</strong> 661 Levinia Street, Garsfontein, 0081
+            </p>
+          </section>
+          <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Business Hours</h2>
+            <p class="text-gray-600">
+              <strong>Monday - Friday:</strong> 9h00 - 18h00<br>
+              <strong>Saturday:</strong> 10h00 - 14h00<br>
+              <strong>Sunday:</strong> Closed
+            </p>
+          </section>
+        </div>
+       
+        <div>
+          <form action="/inquiries/contact" method="POST" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+              <div class="mt-1">
+                <input type="text" name="name" id="name" required class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+              </div>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <div class="mt-1">
+                <input type="email" name="email" id="email" required class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+              </div>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+              <div class="mt-1">
+                <textarea name="message" id="message" rows="4" required class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></textarea>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>
+            

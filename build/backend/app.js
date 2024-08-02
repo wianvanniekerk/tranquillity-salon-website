@@ -15,12 +15,12 @@ const dbConfig = require('./config/db.config');
 const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../../frontend/views'));
+app.set('views', path.join(__dirname, '../../../Node/build/frontend/views'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../../../Node/build')));
 
 const sessionStore = new MySQLStore({
-    expiration: 86400000, // 24 hours
+    expiration: 86400000,
     createDatabaseTable: true,
     schema: {
         tableName: 'sessions',

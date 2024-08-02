@@ -1,6 +1,6 @@
-const app = require('./app');
-const port = process.env.PORT || 3000;
-const { startAppointmentReminders } = require('./jobs/appointmentReminders');
+const app = require('./build/backend/app');
+const port = process.env.PORT;
+const { startAppointmentReminders } = require('./build/backend/jobs/appointmentReminders');
 
 startAppointmentReminders();
 

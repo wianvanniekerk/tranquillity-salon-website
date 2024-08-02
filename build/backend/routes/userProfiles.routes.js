@@ -175,7 +175,7 @@ router.post('/forgot-password', (req, res) => {
                 });
             }
 
-            const resetLink = `https://tranquillity-salon-website.onrender.com/user/reset-password?token=${token}`;
+            const resetLink = `https://tranquillity-salon-website-production.up.railway.app/user/reset-password?token=${token}`;
             const mailOptions = {
             from: '"Tranquillity Salon" <admin@tranquillitysalon.co.za>',
             to: email,

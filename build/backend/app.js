@@ -39,7 +39,7 @@ app.use(session({
     store: sessionStore,
     cookie: { 
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
+        sameSite: 'none'
     }
 }));
 

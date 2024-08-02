@@ -23,12 +23,10 @@ router.post('/login', async (req, res) => {
     const password = req.body.password;
 
     try {
-        const query = `
-            SELECT * FROM Client WHERE Email = ?
-        `;
-
+        const query = `SELECT * FROM Client WHERE Email = ?`;
         executeQuery(query, [email], async (err, results) => {
             if (err || results.length === 0) {
+                console.log('Error or no results:', err, results);
                 return res.render('registration/login', { errorMessage: 'Invalid email or password.' });
             }
 
@@ -36,16 +34,19 @@ router.post('/login', async (req, res) => {
             const isMatch = await bcrypt.compare(password, user.Password);
 
             if (!isMatch) {
+                console.log('Password mismatch');
                 return res.render('registration/login', { errorMessage: 'Invalid email or password.' });
             }
 
             req.session.userId = user.ClientID.toString();
             req.session.userType = user.UserType;
-            req.flash('success', 'You have logged in successfully!');
 
-            console.log('Redirecting to:', req.session.returnTo || '/user/profile'); // Log redirect target
+            console.log('User logged in:', req.session);
+
+            req.flash('success', 'You have logged in successfully!');
             const redirectTo = req.session.returnTo || '/user/profile';
             delete req.session.returnTo;
+
             res.redirect(redirectTo);
         });
     } catch (err) {
@@ -53,7 +54,6 @@ router.post('/login', async (req, res) => {
         res.render('registration/login', { errorMessage: 'Login failed. Please try again.' });
     }
 });
-
 
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {

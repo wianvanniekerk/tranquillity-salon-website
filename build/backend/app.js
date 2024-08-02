@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sessionStore = new MySQLStore({
-    expiration: 86400000,
+    expiration: 86400000, // 24 hours
     createDatabaseTable: true,
     schema: {
         tableName: 'sessions',
         columnNames: {
-            sessionId: 'session_id',
+            session_id: 'session_id',
             expires: 'expires',
             data: 'data'
         }

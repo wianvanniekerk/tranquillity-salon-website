@@ -11,11 +11,12 @@ const formsRoutes = require('./routes/forms.routes');
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const dbConfig = require('./config/db.config');
 const flash = require('connect-flash');
+const dbConfig = require('./config/db.config');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../build/frontend/views'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../build')));
 
@@ -37,9 +38,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
-    cookie: { 
+    cookie: {
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax'
+        sameSite: 'strict'
     }
 }));
 
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
 app.use('/', indexRoutes);
 app.use(authRoutes);
 app.use('/user', userProfilesRoutes);

@@ -10,6 +10,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="https://tranquillitysalon.co.za/wp-content/uploads/2020/05/cropped-tranquility512-192x192.jpg" type="image/x-icon">
+    <style>
+        /* Add styles for the mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .mobile-menu a {
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        /* Add styles for the Products submenu */
+        .mobile-submenu {
+            display: none;
+            flex-direction: column;
+            background-color: white;
+            margin-left: 20px;
+        }
+        .mobile-submenu a {
+            padding: 8px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .mobile-submenu a:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
   <header class="bg-white shadow-md relative z-50">
@@ -42,13 +76,51 @@
       </nav>
       <div class="md:hidden flex items-center">
         <a href="/login" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 mr-4">Login</a>
-        <button class="text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu">
+        <button class="text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu" id="menu-toggle">
           <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
     </div>
+    <div class="mobile-menu flex flex-col md:hidden" id="mobile-menu">
+      <a href="/" class="text-gray-700 hover:text-teal-600">Home</a>
+      <div class="mobile-submenu-toggle px-5 text-gray-700 hover:text-teal-600">Products</div>
+      <div class="mobile-submenu" id="mobile-submenu">
+        <a href="/products/cleanse" class="text-gray-700 hover:text-teal-600">Cleanse</a>
+        <a href="/products/condition" class="text-gray-700 hover:text-teal-600">Condition</a>
+        <a href="/products/exfoliate" class="text-gray-700 hover:text-teal-600">Exfoliate</a>
+        <a href="/products/moisture" class="text-gray-700 hover:text-teal-600">Moisture</a>
+        <a href="/products/actives" class="text-gray-700 hover:text-teal-600">Actives</a>
+        <a href="/products/age-intelligent" class="text-gray-700 hover:text-teal-600">Age Intelligent</a>
+        <a href="/products/man" class="text-gray-700 hover:text-teal-600">Man</a>
+        <a href="/products/y-skin" class="text-gray-700 hover:text-teal-600">Y:Skin</a>
+        <a href="/products/sun-c" class="text-gray-700 hover:text-teal-600">Sun-C</a>
+        <a href="/products/additives" class="text-gray-700 hover:text-teal-600">Additives</a>
+        <a href="/products/starter-packs" class="text-gray-700 hover:text-teal-600">Starter-Packs</a>
+      </div>
+      <a href="/inquiries/contact" class="text-gray-700 hover:text-teal-600">Contact</a>
+    </div>
   </header>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      var menu = document.getElementById('mobile-menu');
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'flex';
+      }
+    });
+
+    document.querySelector('.mobile-submenu-toggle').addEventListener('click', function() {
+      var submenu = document.getElementById('mobile-submenu');
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+      } else {
+        submenu.style.display = 'flex';
+      }
+    });
+  </script>
 </body>
 </html>

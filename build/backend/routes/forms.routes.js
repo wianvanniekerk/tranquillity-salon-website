@@ -46,7 +46,7 @@ router.post('/submit', async (req, res) => {
 
         const updateClientQuery = `
             UPDATE Client SET
-                PhoneNumber = ?, Occupation ?, Address = ?, Area = ?, PostalCode = ?, DateOfBirth = ?, RegistrationDate = NOW(),
+                PhoneNumber = ?, Occupation = ?, Address = ?, Area = ?, PostalCode = ?, DateOfBirth = ?, RegistrationDate = NOW(),
                 MarketingConsent = ?, IsActive = 1, CreatedAt = NOW(), IDNumber = ?, Password = ?
             WHERE ClientID = ?`;
         const updateClientParams = [phoneNumber, occupation, address, area, postalCode, new Date(dateOfBirth), marketingConsent, idNumber, hashedPassword, clientId];

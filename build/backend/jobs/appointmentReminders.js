@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
-const config = require('../config/db.config');
+const { config } = require('../config/db.config');
 require('dotenv').config();
 
 const transporter = nodemailer.createTransport({

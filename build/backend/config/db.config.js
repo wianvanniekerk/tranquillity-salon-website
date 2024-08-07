@@ -11,12 +11,12 @@ const dbConfig = {
   multipleStatements: true 
 };
 
-let connection;
+let config;
 
 function handleDisconnect() {
-  connection = mysql.createConnection(dbConfig);
+  config = mysql.createConnection(dbConfig);
 
-  connection.connect(err => {
+  config.connect(err => {
     if (err) {
       console.error('Error connecting to the database:', err);
       setTimeout(handleDisconnect, 2000);
@@ -25,7 +25,7 @@ function handleDisconnect() {
     }
   });
 
-  connection.on('error', err => {
+  config.on('error', err => {
     console.error('Database error:', err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
       handleDisconnect();
@@ -37,4 +37,4 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-module.exports = { config: connection, handleDisconnect };
+module.exports = { config, handleDisconnect };

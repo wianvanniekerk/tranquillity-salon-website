@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config/db.config');
+const { config } = require('../config/db.config');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 

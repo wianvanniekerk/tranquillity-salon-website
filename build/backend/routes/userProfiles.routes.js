@@ -3,7 +3,7 @@ const router = express.Router();
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const config = require('../config/db.config');
+const { config } = require('../config/db.config');
 require('dotenv').config();
 
 const transporter = nodemailer.createTransport({

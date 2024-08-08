@@ -81,7 +81,7 @@ async function sendAppointmentReminders() {
 }
 
 function startAppointmentReminders() {
-    cron.schedule('* * * * *', () => {
+    cron.schedule('0 * * * *', () => {
         console.log('Running the appointment reminder task');
         sendAppointmentReminders();
     });

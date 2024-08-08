@@ -103,17 +103,13 @@ router.get('/client', async (req, res) => {
         const results = await executeQuery(tokenQuery, [token]);
 
         if (results.length === 0) {
-            console.error(`Token not found: ${token}`);
             return res.status(400).send('Invalid or expired token.');
         }
 
         const clientId = results[0].ClientID;
         const expireDate = results[0].ExpireDate;
 
-        console.log(`Token: ${token}, ClientID: ${clientId}, Expiration Date: ${expireDate}, Current Date: ${new Date()}`);
-
         if (new Date() > expireDate) {
-            console.error(`Token expired: ${token}, Expired At: ${expireDate}`);
             return res.status(400).send('Token has expired.');
         }
 
@@ -126,7 +122,6 @@ router.get('/client', async (req, res) => {
         return res.status(500).send('Internal server error.');
     }
 });
-
 
 
 module.exports = router;

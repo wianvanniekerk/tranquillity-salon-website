@@ -23,8 +23,8 @@ async function sendAppointmentReminders() {
         const [appointments] = await new Promise((resolve, reject) => {
             config.query(`
                 SELECT a.AppointmentID, c.Email, c.FirstName, a.AppointmentDate
-                FROM SkinDept.Appointment a
-                JOIN SkinDept.Client c ON a.ClientID = c.ClientID
+                FROM Appointment a
+                JOIN Client c ON a.ClientID = c.ClientID
                 WHERE a.AppointmentDate BETWEEN ? AND ?
                 AND a.ReminderSent = 0
             `, [formattedNow, formattedTomorrow], (error, results) => {
@@ -59,7 +59,7 @@ async function sendAppointmentReminders() {
 
                 await new Promise((resolve, reject) => {
                     config.query(`
-                        UPDATE SkinDept.Appointment
+                        UPDATE Appointment
                         SET ReminderSent = 1
                         WHERE AppointmentID = ?
                     `, [appointment.AppointmentID], (error) => {

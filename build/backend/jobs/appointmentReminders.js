@@ -1,3 +1,4 @@
+const mysql = require('mysql');
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
 const { config } = require('../config/db.config');
@@ -14,12 +15,11 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendAppointmentReminders() {
+    let connection;
     try {
-        config.getConnection(async (err, connection) => {
-        if (err) {
-          console.error('Error getting connection from the pool:', err);
-          return;
-        }
+        connection = mysql.createConnection(config);
+
+        connection.connect();
 
         const now = new Date();
         const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
@@ -127,15 +127,17 @@ async function sendAppointmentReminders() {
         }
 
         console.log('Appointment reminders processed.');
-        connection.release();
-    });
-  } catch (err) {
-    console.error('Error processing appointment reminders:', err);
-  }
+    } catch (err) {
+        console.error('Error processing appointment reminders:', err);
+    } finally {
+        if (connection) {
+            connection.end();
+        }
+    }
 }
 
 function startAppointmentReminders() {
-    cron.schedule('* * * * *', () => {
+    cron.schedule('0 * * * *', () => {
         console.log('Running the appointment reminder task');
         sendAppointmentReminders();
     });

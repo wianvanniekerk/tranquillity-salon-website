@@ -56,70 +56,74 @@ async function sendAppointmentReminders() {
                 <title>Appointment Reminder - Tranquillity Salon</title>
                 <style>
                     body {
-                        font-family: Arial, sans-serif;
-                        background-color: #f4f4f4;
                         margin: 0;
                         padding: 0;
-                        color: #333;
+                        font-family: Arial, sans-serif;
+                        background-color: #f0f4f8;
                     }
                     .container {
-                        width: 100%;
-                        max-width: 600px;
-                        margin: 0 auto;
                         background-color: #ffffff;
-                        padding: 20px;
                         border-radius: 8px;
-                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        overflow: hidden;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        margin: 0 auto;
+                        max-width: 600px;
+                        padding: 15px;
                     }
                     .header {
+                        background-color: #0d9488;
+                        padding: 15px 20px;
                         text-align: center;
-                        padding-bottom: 20px;
-                        border-bottom: 1px solid #dddddd;
                     }
                     .header img {
-                        width: 100px;
-                        margin-bottom: 10px;
-                    }
-                    .header h1 {
-                        margin: 0;
-                        font-size: 24px;
-                        color: #333333;
+                        max-width: 180px;
+                        height: auto;
                     }
                     .content {
-                        padding: 20px 0;
-                        text-align: left;
+                        padding: 20px;
+                    }
+                    .content h1 {
+                        color: #1f2937;
+                        font-size: 22px;
+                        margin-bottom: 15px;
                     }
                     .content p {
-                        line-height: 1.6;
+                        color: #4b5563;
+                        font-size: 14px;
+                        line-height: 1.5;
+                        margin-top: 10px;
                     }
-                    .content .appointment-details {
-                        background-color: #f9f9f9;
-                        padding: 10px;
-                        border-radius: 5px;
-                        margin-top: 20px;
-                        border: 1px solid #dddddd;
+                    .appointment-details {
+                        background-color: #f9fafb;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 4px;
+                        padding: 15px;
+                        margin-top: 10px;
+                    }
+                    .fine-print {
+                        font-size: 12px;
+                        color: #6b7280;
+                        margin-top: 30px;
                     }
                     .footer {
+                        background-color: #f3f4f6;
+                        padding: 15px 20px;
                         text-align: center;
-                        padding-top: 20px;
-                        border-top: 1px solid #dddddd;
-                        margin-top: 20px;
-                        font-size: 12px;
-                        color: #888888;
                     }
-                    .footer a {
-                        color: #888888;
-                        text-decoration: none;
+                    .footer p {
+                        color: #6b7280;
+                        font-size: 12px;
+                        margin: 0;
                     }
                 </style>
             </head>
             <body>
                 <div class="container">
                     <div class="header">
-                        <img src="https://tranquillitysalon.co.za/logo.png" alt="Tranquillity Salon Logo">
-                        <h1>Appointment Reminder</h1>
+                        <img src="https://tranquillitysalon.co.za/logo.png" alt="Tranquillity Salon">
                     </div>
                     <div class="content">
+                        <h1>Appointment Reminder</h1>
                         <p>Dear ${appointment.FirstName},</p>
                         <p>This is a friendly reminder that you have an appointment scheduled at <strong>Tranquillity Salon</strong>:</p>
                         <div class="appointment-details">
@@ -130,17 +134,17 @@ async function sendAppointmentReminders() {
                         <p>We look forward to welcoming you to our salon.</p>
                         <p>Best regards,</p>
                         <p><strong>The Tranquillity Salon Team</strong></p>
+                        <div class="fine-print">
+                            <p>If you didn't schedule this appointment, please ignore this email or contact us immediately.</p>
+                        </div>
                     </div>
                     <div class="footer">
-                        <p>Tranquillity Salon | 661 Levinia Street, Garsfontein, 0081</p>
-                        <p>Phone: <a href="tel:0832600148">083 260 0148</a> | Email: <a href="mailto:jolette@tranquillitysalon.co.za">admin@tranquillitysalon.co.za</a></p>
-                        <p><a href="https://tranquillitysalon.co.za">Visit our website</a></p>
-                        <p>If you no longer wish to receive these emails, you may <a href="https://tranquillitysalon.co.za/unsubscribe">unsubscribe</a> at any time.</p>
+                        <p>© 2024 Tranquillity Salon. All rights reserved.</p>
+                        <p>661 Levinia Street, Garsfontein, 0081</p>
                     </div>
                 </div>
             </body>
-            </html>`
-            
+            </html>`            
             };
 
             try {

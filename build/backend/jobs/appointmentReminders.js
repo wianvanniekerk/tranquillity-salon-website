@@ -54,98 +54,51 @@ async function sendAppointmentReminders() {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Appointment Reminder - Tranquillity Salon</title>
-                <style>
-                    body {
-                        margin: 0;
-                        padding: 0;
-                        font-family: Arial, sans-serif;
-                        background-color: #f0f4f8;
-                    }
-                    .container {
-                        background-color: #ffffff;
-                        border-radius: 8px;
-                        overflow: hidden;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        margin: 0 auto;
-                        max-width: 600px;
-                        padding: 15px;
-                    }
-                    .header {
-                        background-color: #0d9488;
-                        padding: 15px 20px;
-                        text-align: center;
-                    }
-                    .header img {
-                        max-width: 180px;
-                        height: auto;
-                    }
-                    .content {
-                        padding: 20px;
-                    }
-                    .content h1 {
-                        color: #1f2937;
-                        font-size: 22px;
-                        margin-bottom: 15px;
-                    }
-                    .content p {
-                        color: #4b5563;
-                        font-size: 14px;
-                        line-height: 1.5;
-                        margin-top: 10px;
-                    }
-                    .appointment-details {
-                        background-color: #f9fafb;
-                        border: 1px solid #e5e7eb;
-                        border-radius: 4px;
-                        padding: 15px;
-                        margin-top: 10px;
-                    }
-                    .fine-print {
-                        font-size: 12px;
-                        color: #6b7280;
-                        margin-top: 30px;
-                    }
-                    .footer {
-                        background-color: #f3f4f6;
-                        padding: 15px 20px;
-                        text-align: center;
-                    }
-                    .footer p {
-                        color: #6b7280;
-                        font-size: 12px;
-                        margin: 0;
-                    }
-                </style>
             </head>
-            <body>
-                <div class="container">
-                    <div class="header">
-                        <img src="https://tranquillitysalon.co.za/logo.png" alt="Tranquillity Salon">
-                    </div>
-                    <div class="content">
-                        <h1>Appointment Reminder</h1>
-                        <p>Dear ${appointment.FirstName},</p>
-                        <p>This is a friendly reminder that you have an appointment scheduled at <strong>Tranquillity Salon</strong>:</p>
-                        <div class="appointment-details">
-                            <p><strong>Date:</strong> ${new Date(appointment.AppointmentDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <p><strong>Time:</strong> ${new Date(appointment.AppointmentDate).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</p>
-                        </div>
-                        <p>If you need to reschedule or have any questions, please do not hesitate to contact us at <a href="tel:0832600148">083 260 0148</a>.</p>
-                        <p>We look forward to welcoming you to our salon.</p>
-                        <p>Best regards,</p>
-                        <p><strong>The Tranquillity Salon Team</strong></p>
-                        <div class="fine-print">
-                            <p>If you didn't schedule this appointment, please ignore this email or contact us immediately.</p>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>© 2024 Tranquillity Salon. All rights reserved.</p>
-                        <p>661 Levinia Street, Garsfontein, 0081</p>
-                    </div>
-                </div>
+            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333333;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
+                    <tr>
+                        <td style="padding: 20px 0;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                <!-- Header -->
+                                <tr>
+                                    <td style="background-color: #0d9488; padding: 20px 40px; text-align: center;">
+                                        <img src="https://res.cloudinary.com/daiaxqvvr/image/upload/v1721458782/tranquility-logo_exggpt.png" alt="Tranquillity Salon" style="max-width: 200px; height: auto;">
+                                    </td>
+                                </tr>
+                                <!-- Content -->
+                                <tr>
+                                    <td style="padding: 40px;">
+                                        <h1 style="color: #0d9488; font-size: 24px; margin-bottom: 20px;">Appointment Reminder</h1>
+                                        <p style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">Dear ${appointment.FirstName},</p>
+                                        <p style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">This is a friendly reminder that you have an appointment scheduled at Tranquillity Salon:</p>
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto; background-color: #f0f9f8; border-radius: 8px; padding: 20px;">
+                                            <tr>
+                                                <td>
+                                                    <p style="font-size: 18px; font-weight: bold; margin: 0;">Date: ${new Date(appointment.AppointmentDate).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                                    <p style="font-size: 18px; font-weight: bold; margin: 10px 0 0;">Time: ${new Date(new Date(appointment.AppointmentDate).getTime() - 2 * 60 * 60 * 1000).toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit' })}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p style="font-size: 16px; line-height: 1.5; margin-top: 20px;">If you need to reschedule or have any questions, please contact us at (083) 260-0148.</p>
+                                        <p style="font-size: 16px; line-height: 1.5;">We look forward to seeing you!</p>
+                                    </td>
+                                </tr>
+                                <!-- Footer -->
+                                <tr>
+                                    <td style="background-color: #f3f4f6; padding: 20px 40px; text-align: center;">
+                                        <p style="color: #6b7280; font-size: 14px; margin: 0;">© 2024 Tranquillity Salon. All rights reserved.</p>
+                                        <p style="color: #6b7280; font-size: 14px; margin: 10px 0 0;">661 Levinia Street, Garsfontein, 0081</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </body>
-            </html>`            
+            </html>`
             };
+            
 
             try {
                 await transporter.sendMail(mailOptions);

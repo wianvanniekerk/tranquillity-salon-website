@@ -103,7 +103,10 @@ router.get('/client', async (req, res) => {
         const results = await executeQuery(tokenQuery, [token]);
 
         if (results.length === 0) {
-            return res.status(400).send('Invalid or expired token.');
+            return res.status(400).send('Invalid token.');
+        }
+        if (new Date() > results[0].ExpireDate) {
+            return res.status(400).send('Token has expired.');
         }
 
         const clientId = results[0].ClientID;

@@ -16,6 +16,7 @@ const transporter = nodemailer.createTransport({
 async function sendAppointmentReminders() {
     try {
         const now = new Date();
+        now.setHours(now.getHours() - 2);
         const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
         const formattedNow = now.toISOString().slice(0, 19).replace('T', ' ');
         const formattedTomorrow = tomorrow.toISOString().slice(0, 19).replace('T', ' ');

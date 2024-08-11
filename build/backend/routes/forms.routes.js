@@ -60,7 +60,7 @@ router.post('/submit', async (req, res) => {
 
         const insertQuery = `
             INSERT INTO AppointmentClientHistory
-                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2Weeks, BotoxFillers2_Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
+                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2Weeks, BotoxFillers_2Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`;
         const insertParams = [
             appointmentId,

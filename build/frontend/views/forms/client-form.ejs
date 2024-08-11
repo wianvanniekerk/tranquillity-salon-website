@@ -173,6 +173,12 @@
     const inputs = form.querySelectorAll('input[required], textarea[required]');
     let isValid = true;
 
+    const formData = new FormData(form);
+    
+    formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+    });
+
     inputs.forEach(input => {
       if (input.type === 'radio') {
         const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);

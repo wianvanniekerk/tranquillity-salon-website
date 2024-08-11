@@ -80,15 +80,15 @@
             <h2 class="text-2xl font-bold text-teal-500 mb-4">Medical History</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <% const booleanFields = [
-                { field: 'HormonalImbalance', label: 'Hormonal Imbalance' },
-                { field: 'Pregnant', label: 'Are you Pregnant?' },
-                { field: 'Breastfeeding', label: 'Breastfeeding' },
-                { field: 'Smoker', label: 'Smoker' },
-                { field: 'SkinCancer', label: 'Skin Cancer' },
-                { field: 'IPL_Laser_2Weeks', label: 'IPL/Laser in last 2 weeks' },
-                { field: 'SkinResurfacing_ChemicalPeels_2Weeks', label: 'Skin Resurfacing/Chemical Peels in last 2 weeks' },
-                { field: 'BotoxFillers_2Weeks', label: 'Botox/Fillers in last 2 weeks' },
-                { field: 'WaxingElectrolysis_3Days', label: 'Waxing/Electrolysis in last 3 days' }
+                { field: 'hormonal_imbalance', label: 'Hormonal Imbalance' },
+                { field: 'pregnant', label: 'Are you Pregnant?' },
+                { field: 'breastfeeding', label: 'Breastfeeding' },
+                { field: 'smoker', label: 'Smoker' },
+                { field: 'skin_cancer', label: 'Skin Cancer' },
+                { field: 'ipl_laser_2weeks', label: 'IPL/Laser in last 2 weeks' },
+                { field: 'skin_resurfacing_chemical_peels_2weeks', label: 'Skin Resurfacing/Chemical Peels in last 2 weeks' },
+                { field: 'botox_fillers_2weeks', label: 'Botox/Fillers in last 2 weeks' },
+                { field: 'waxing_electrolysis_3days', label: 'Waxing/Electrolysis in last 3 days' }
               ]; %>
               
               <% booleanFields.forEach(item => { %>
@@ -118,12 +118,12 @@
             <h2 class="text-2xl font-bold text-teal-500 mb-4">Current Medication Usage</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
               <% const medicationFields = [
-                { field: 'TretinoinMedication', label: 'Tretinoin Medication' },
-                { field: 'AccutanesMedication', label: 'Accutane Medication' },
-                { field: 'CortisoneMedication', label: 'Cortisone Medication' },
-                { field: 'ThyroidMedication', label: 'Thyroid Medication' },
-                { field: 'BloodPressureMedication', label: 'Blood Pressure Medication' },
-                { field: 'HormonalContraceptives', label: 'Hormonal Contraceptives' }
+                { field: 'tretinoin_medication', label: 'Tretinoin Medication' },
+                { field: 'accutane_medication', label: 'Accutane Medication' },
+                { field: 'cortisone_medication', label: 'Cortisone Medication' },
+                { field: 'thyroid_medication', label: 'Thyroid Medication' },
+                { field: 'blood_pressure_medication', label: 'Blood Pressure Medication' },
+                { field: 'hormonal_contraceptives', label: 'Hormonal Contraceptives' }
               ]; %>
               
               <% medicationFields.forEach(item => { %>

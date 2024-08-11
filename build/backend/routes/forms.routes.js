@@ -42,7 +42,12 @@ router.post('/submit', async (req, res) => {
         const appointmentId = results[0].AppointmentID;
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const convertToTinyInt = (value) => value === 'on' || value === '1' || value === 'true' ? 1 : 0;
+        const convertToTinyInt = (value) => {
+            if (value === '1' || value === 'true' || value === 'on' || value === 'yes') {
+                return 1;
+            }
+            return 0;
+        };
 
         const updateClientQuery = `
             UPDATE Client SET

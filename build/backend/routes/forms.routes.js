@@ -17,6 +17,12 @@ const executeQuery = (query, params) => {
     });
 };
 
+const convertToTinyInt = (value) => {
+    if (typeof value === 'string') {
+        value = value.trim().toLowerCase();
+    }
+    return value === '1' || value === 'true' || value === 'yes' ? 1 : 0;
+};
 
 router.post('/submit', async (req, res) => {
     const {
@@ -42,7 +48,6 @@ router.post('/submit', async (req, res) => {
         const appointmentId = results[0].AppointmentID;
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const convertToTinyInt = (value) => value === 'on' || value === '1' || value === 'true' ? 1 : 0;
 
         const updateClientQuery = `
             UPDATE Client SET
@@ -53,7 +58,7 @@ router.post('/submit', async (req, res) => {
 
         const insertQuery = `
             INSERT INTO AppointmentClientHistory
-                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2Weeks, BotoxFillers_2Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
+                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2Weeks, BotoxFillers_2_Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`;
         const insertParams = [
             appointmentId,
@@ -90,7 +95,6 @@ router.post('/submit', async (req, res) => {
     }
 });
 
-
 router.get('/client', async (req, res) => {
     const token = req.query.token;
 
@@ -125,6 +129,5 @@ router.get('/client', async (req, res) => {
         return res.status(500).send('Internal server error.');
     }
 });
-
 
 module.exports = router;

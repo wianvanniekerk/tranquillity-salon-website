@@ -17,14 +17,6 @@ const executeQuery = (query, params) => {
     });
 };
 
-// Helper function to convert values to tinyint (1 or 0)
-const convertToTinyInt = (value) => {
-    if (typeof value === 'string') {
-        value = value.trim().toLowerCase();
-    }
-    console.log(`Converting value: ${value}`);  // Log value for debugging
-    return value === '1' || value === 'true' || value === 'yes' ? 1 : 0;
-};
 
 router.post('/submit', async (req, res) => {
     const {
@@ -50,6 +42,7 @@ router.post('/submit', async (req, res) => {
         const appointmentId = results[0].AppointmentID;
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        const convertToTinyInt = (value) => value === 'on' || value === '1' || value === 'true' ? 1 : 0;
 
         const updateClientQuery = `
             UPDATE Client SET
@@ -97,6 +90,7 @@ router.post('/submit', async (req, res) => {
     }
 });
 
+
 router.get('/client', async (req, res) => {
     const token = req.query.token;
 
@@ -131,5 +125,6 @@ router.get('/client', async (req, res) => {
         return res.status(500).send('Internal server error.');
     }
 });
+
 
 module.exports = router;

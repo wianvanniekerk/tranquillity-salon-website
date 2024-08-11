@@ -79,113 +79,33 @@
           <section>
             <h2 class="text-2xl font-bold text-teal-500 mb-4">Medical History</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="space-y-4">
-                <label for="HormonalImbalance" class="block text-sm font-semibold text-gray-800">Hormonal Imbalance</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="HormonalImbalance" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="HormonalImbalance" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="Pregnant" class="block text-sm font-semibold text-gray-800">Are you Pregnant</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Pregnant" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Pregnant" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="Breastfeeding" class="block text-sm font-semibold text-gray-800">Breastfeeding</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Breastfeeding" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Breastfeeding" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="Smoker" class="block text-sm font-semibold text-gray-800">Smoker</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Smoker" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="Smoker" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="SkinCancer" class="block text-sm font-semibold text-gray-800">Skin Cancer</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="SkinCancer" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="SkinCancer" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="IPL_Laser_2Weeks" class="block text-sm font-semibold text-gray-800">IPL/Laser in last 2 weeks</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="IPL_Laser_2Weeks" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="IPL_Laser_2Weeks" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="SkinResurfacing_ChemicalPeels_2Weeks" class="block text-sm font-semibold text-gray-800">Skin Resurfacing/Chemical Peels in last 2 weeks</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="SkinResurfacing_ChemicalPeels_2Weeks" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="SkinResurfacing_ChemicalPeels_2Weeks" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
-
-              <div class="space-y-4">
-                <label for="BotoxFillers_2Weeks" class="block text-sm font-semibold text-gray-800">Botox/Fillers in last 2 weeks</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="BotoxFillers_2Weeks" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="BotoxFillers_2Weeks" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
+              <% const booleanFields = [
+                { field: 'HormonalImbalance', label: 'Hormonal Imbalance' },
+                { field: 'Pregnant', label: 'Are you Pregnant?' },
+                { field: 'Breastfeeding', label: 'Breastfeeding' },
+                { field: 'Smoker', label: 'Smoker' },
+                { field: 'SkinCancer', label: 'Skin Cancer' },
+                { field: 'IPL_Laser_2Weeks', label: 'IPL/Laser in last 2 weeks' },
+                { field: 'SkinResurfacing_ChemicalPeels_2Weeks', label: 'Skin Resurfacing/Chemical Peels in last 2 weeks' },
+                { field: 'BotoxFillers_2Weeks', label: 'Botox/Fillers in last 2 weeks' },
+                { field: 'WaxingElectrolysis_3Days', label: 'Waxing/Electrolysis in last 3 days' }
+              ]; %>
               
-              <div class="space-y-4">
-                <label for="WaxingElectrolysis_3Days" class="block text-sm font-semibold text-gray-800">Waxing/Electrolysis in last 3 days</label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="WaxingElectrolysis_3Days" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="WaxingElectrolysis_3Days" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
-                  <span class="ml-2 text-gray-800">No</span>
-                </label>
-              </div>
+              <% booleanFields.forEach(item => { %>
+                <div class="space-y-2">
+                  <label class="block text-sm font-semibold text-gray-800"><%= item.label %></label>
+                  <div class="mt-2 space-x-6">
+                    <label class="inline-flex items-center">
+                      <input type="radio" name="<%= item.field %>" value="1" required class="form-radio text-teal-500 focus:ring-teal-400">
+                      <span class="ml-2 text-gray-800">Yes</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                      <input type="radio" name="<%= item.field %>" value="0" required class="form-radio text-teal-500 focus:ring-teal-400">
+                      <span class="ml-2 text-gray-800">No</span>
+                    </label>
+                  </div>
+                </div>
+              <% }); %>
             </div>
 
             <div class="mt-8 space-y-4">

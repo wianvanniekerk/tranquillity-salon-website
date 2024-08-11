@@ -17,10 +17,12 @@ const executeQuery = (query, params) => {
     });
 };
 
+// Helper function to convert values to tinyint (1 or 0)
 const convertToTinyInt = (value) => {
     if (typeof value === 'string') {
         value = value.trim().toLowerCase();
     }
+    console.log(`Converting value: ${value}`);  // Log value for debugging
     return value === '1' || value === 'true' || value === 'yes' ? 1 : 0;
 };
 
@@ -58,7 +60,7 @@ router.post('/submit', async (req, res) => {
 
         const insertQuery = `
             INSERT INTO AppointmentClientHistory
-                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2Weeks, BotoxFillers_2_Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
+                (AppointmentID, CurrentRange, HormonalImbalance, Pregnant, Breastfeeding, Smoker, SkinCancer, IPL_Laser_2Weeks, SkinResurfacing_ChemicalPeels_2_Weeks, BotoxFillers2_Weeks, WaxingElectrolysis_3Days, MedicalConditions_Surgery_PastYear, TretinoinMedication, AccutanesMedication, CortisoneMedication, ThyroidMedication, BloodPressureMedication, HormonalContraceptives, OtherMedication, Allergies, CreatedAt)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`;
         const insertParams = [
             appointmentId,

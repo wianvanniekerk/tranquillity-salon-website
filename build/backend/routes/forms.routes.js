@@ -27,9 +27,6 @@ router.post('/submit', async (req, res) => {
         hormonal_contraceptives, other_medications, allergies
     } = req.body;
 
-    // Convert undefined or null to 0
-    const convertToZeroIfUndefined = value => (value === undefined || value === null) ? '0' : value;
-
     try {
         const selectQuery = 'SELECT ClientID, AppointmentID FROM AppointmentTokens WHERE Token = ?';
         const selectParams = [token];
@@ -45,6 +42,7 @@ router.post('/submit', async (req, res) => {
         const appointmentId = results[0].AppointmentID;
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        const convertToTinyInt = (value) => value === 'on' || value === '1' || value === 'true' ? 1 : 0;
 
         const updateClientQuery = `
             UPDATE Client SET
@@ -59,23 +57,23 @@ router.post('/submit', async (req, res) => {
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`;
         const insertParams = [
             appointmentId,
-            convertToZeroIfUndefined(current_skin_care_range),
-            convertToZeroIfUndefined(hormonal_imbalance),
-            convertToZeroIfUndefined(pregnant),
-            convertToZeroIfUndefined(breastfeeding),
-            convertToZeroIfUndefined(smoker),
-            convertToZeroIfUndefined(skin_cancer),
-            convertToZeroIfUndefined(ipl_laser_2weeks),
-            convertToZeroIfUndefined(skin_resurfacing_chemical_peels_2weeks),
-            convertToZeroIfUndefined(botox_fillers_2weeks),
-            convertToZeroIfUndefined(waxing_electrolysis_3days),
-            convertToZeroIfUndefined(medical_conditions_surgery_past_year),
-            convertToZeroIfUndefined(tretinoin_medication),
-            convertToZeroIfUndefined(accutane_medication),
-            convertToZeroIfUndefined(cortisone_medication),
-            convertToZeroIfUndefined(thyroid_medication),
-            convertToZeroIfUndefined(blood_pressure_medication),
-            convertToZeroIfUndefined(hormonal_contraceptives),
+            current_skin_care_range,
+            convertToTinyInt(hormonal_imbalance),
+            convertToTinyInt(pregnant),
+            convertToTinyInt(breastfeeding),
+            convertToTinyInt(smoker),
+            convertToTinyInt(skin_cancer),
+            convertToTinyInt(ipl_laser_2weeks),
+            convertToTinyInt(skin_resurfacing_chemical_peels_2weeks),
+            convertToTinyInt(botox_fillers_2weeks),
+            convertToTinyInt(waxing_electrolysis_3days),
+            medical_conditions_surgery_past_year,
+            convertToTinyInt(tretinoin_medication),
+            convertToTinyInt(accutane_medication),
+            convertToTinyInt(cortisone_medication),
+            convertToTinyInt(thyroid_medication),
+            convertToTinyInt(blood_pressure_medication),
+            convertToTinyInt(hormonal_contraceptives),
             other_medications,
             allergies
         ];
@@ -91,7 +89,6 @@ router.post('/submit', async (req, res) => {
         res.redirect('/forms/client?token=' + token);
     }
 });
-
 
 
 router.get('/client', async (req, res) => {

@@ -180,11 +180,20 @@
         if (!checked) {
           isValid = false;
           const label = input.closest('div').querySelector('label');
-          label.classList.add('text-red-500');
+          if (label) {
+            label.classList.add('text-red-500');
+          }
+        } else {
+          const label = input.closest('div').querySelector('label');
+          if (label) {
+            label.classList.remove('text-red-500');
+          }
         }
       } else if (!input.value.trim()) {
         isValid = false;
         input.classList.add('border-red-500');
+      } else {
+        input.classList.remove('border-red-500');
       }
     });
 
@@ -194,5 +203,6 @@
     }
   });
 </script>
+
 
 <%- include('../partials/footer') %>

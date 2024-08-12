@@ -77,7 +77,7 @@ async function sendAppointmentReminders() {
                                             <tr>
                                                 <td>
                                                     <p style="font-size: 18px; font-weight: bold; margin: 0;">Date: ${new Date(appointment.AppointmentDate).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                                    <p style="font-size: 18px; font-weight: bold; margin: 10px 0 0;">Time: ${new Date(new Date(appointment.AppointmentDate).getTime() - 2 * 60 * 60 * 1000).toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit' })}</p>
+                                                    <p style="font-size: 18px; font-weight: bold; margin: 10px 0 0;">Time: ${new Date(new Date(appointment.AppointmentDate).getTime() * 60 * 60 * 1000).toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit' })}</p>
                                                 </td>
                                             </tr>
                                         </table>

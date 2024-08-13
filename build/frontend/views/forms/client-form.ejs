@@ -17,6 +17,7 @@
               <div class="space-y-4">
                 <label for="phoneNumber" class="block text-sm font-semibold text-gray-800">Phone Number</label>
                 <input id="phoneNumber" name="phoneNumber" type="tel" required pattern="[0-9]{10}" maxlength="10" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <p id="phoneNumberError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid 10-digit phone number.</p>
               </div>
 
               <div class="space-y-4">
@@ -59,16 +60,19 @@
               <div class="space-y-4">
                 <label for="idNumber" class="block text-sm font-semibold text-gray-800">ID Number</label>
                 <input id="idNumber" name="idNumber" type="text" required pattern="[0-9]{13}" maxlength="13" autocomplete="off" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <p id="idNumberError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid 13-digit ID number.</p>
               </div>
           
               <div class="space-y-4">
                 <label for="password" class="block text-sm font-semibold text-gray-800">Password</label>
                 <input id="password" name="password" type="password" required minlength="8" maxlength="8" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <p id="passwordError" class="text-red-500 text-xs mt-1 hidden">Password must be exactly 8 characters long.</p>
               </div>
-
+              
               <div class="space-y-4">
                 <label for="retypePassword" class="block text-sm font-semibold text-gray-800">Retype Password</label>
                 <input id="retypePassword" name="retypePassword" type="password" required minlength="8" maxlength="8" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <p id="retypePasswordError" class="text-red-500 text-xs mt-1 hidden">Passwords do not match.</p>
               </div>
             </div>
           </section>          
@@ -173,64 +177,76 @@
 </div>
 
 <script>
-  document.getElementById('skinAnalysisForm').addEventListener('submit', function(event) {
-    const form = event.target;
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('skinAnalysisForm');
     const inputs = form.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
 
-    inputs.forEach(input => {
+    function validateInput(input) {
+      let isValid = true;
+
       if (input.type === 'radio') {
         const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
         const checked = Array.from(radioGroup).some(radio => radio.checked);
-        if (!checked) {
-          isValid = false;
-          const label = input.closest('div').querySelector('label');
-          if (label) {
-            label.classList.add('text-red-500');
-          }
-        } else {
-          const label = input.closest('div').querySelector('label');
-          if (label) {
-            label.classList.remove('text-red-500');
-          }
+        const label = input.closest('div').querySelector('label');
+        if (label) {
+          label.classList.toggle('text-red-500', !checked);
         }
+        isValid = checked;
       } else {
         if (!input.value.trim()) {
           isValid = false;
-          input.classList.add('border-red-500');
         } else {
-          input.classList.remove('border-red-500');
-        }
-
-        if (input.id === 'phoneNumber' && !/^\d{10}$/.test(input.value)) {
-          isValid = false;
-          input.classList.add('border-red-500');
-        }
-
-        if (input.id === 'idNumber' && !/^\d{13}$/.test(input.value)) {
-          isValid = false;
-          input.classList.add('border-red-500');
-        }
-
-        if (input.id === 'password' && input.value.length !== 8) {
-          isValid = false;
-          input.classList.add('border-red-500');
-        }
-
-        if (input.id === 'retypePassword') {
-          const password = form.querySelector('#password');
-          if (input.value !== password.value) {
-            isValid = false;
-            input.classList.add('border-red-500');
+          switch (input.id) {
+            case 'phoneNumber':
+              isValid = /^\d{10}$/.test(input.value);
+              break;
+            case 'idNumber':
+              isValid = /^\d{13}$/.test(input.value);
+              break;
+            case 'password':
+              isValid = input.value.length === 8;
+              break;
+            case 'retypePassword':
+              const password = form.querySelector('#password');
+              isValid = input.value === password.value;
+              break;
           }
         }
+
+        input.classList.toggle('border-red-500', !isValid);
+        const errorElement = document.getElementById(`${input.id}Error`);
+        if (errorElement) {
+          errorElement.classList.toggle('hidden', isValid);
+        }
       }
+
+      return isValid;
+    }
+
+    inputs.forEach(input => {
+      input.addEventListener('input', function() {
+        validateInput(this);
+      });
+
+      input.addEventListener('blur', function() {
+        validateInput(this);
+      });
     });
 
-    if (!isValid) {
-      event.preventDefault();
-      alert('Please fill in all required fields correctly.');
-    }
+    form.addEventListener('submit', function(event) {
+      let isValid = true;
+
+      inputs.forEach(input => {
+        if (!validateInput(input)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        event.preventDefault();
+        alert('Please correct the errors in the form before submitting.');
+      }
+    });
   });
 </script>
 

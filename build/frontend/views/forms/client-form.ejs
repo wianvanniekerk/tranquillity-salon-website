@@ -16,7 +16,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div class="space-y-4">
                 <label for="phoneNumber" class="block text-sm font-semibold text-gray-800">Phone Number</label>
-                <input id="phoneNumber" name="phoneNumber" type="text" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <input id="phoneNumber" name="phoneNumber" type="tel" required pattern="[0-9]{10}" maxlength="10" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
               </div>
 
               <div class="space-y-4">
@@ -58,12 +58,17 @@
           
               <div class="space-y-4">
                 <label for="idNumber" class="block text-sm font-semibold text-gray-800">ID Number</label>
-                <input id="idNumber" name="idNumber" type="text" required autocomplete="off" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <input id="idNumber" name="idNumber" type="text" required pattern="[0-9]{13}" maxlength="13" autocomplete="off" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
               </div>
           
               <div class="space-y-4">
                 <label for="password" class="block text-sm font-semibold text-gray-800">Password</label>
-                <input id="password" name="password" type="password" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+                <input id="password" name="password" type="password" required minlength="8" maxlength="8" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
+              </div>
+
+              <div class="space-y-4">
+                <label for="retypePassword" class="block text-sm font-semibold text-gray-800">Retype Password</label>
+                <input id="retypePassword" name="retypePassword" type="password" required minlength="8" maxlength="8" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition duration-150 ease-in-out bg-gray-200 p-2 text-gray-800">
               </div>
             </div>
           </section>          
@@ -189,17 +194,42 @@
             label.classList.remove('text-red-500');
           }
         }
-      } else if (!input.value.trim()) {
-        isValid = false;
-        input.classList.add('border-red-500');
       } else {
-        input.classList.remove('border-red-500');
+        if (!input.value.trim()) {
+          isValid = false;
+          input.classList.add('border-red-500');
+        } else {
+          input.classList.remove('border-red-500');
+        }
+
+        if (input.id === 'phoneNumber' && !/^\d{10}$/.test(input.value)) {
+          isValid = false;
+          input.classList.add('border-red-500');
+        }
+
+        if (input.id === 'idNumber' && !/^\d{13}$/.test(input.value)) {
+          isValid = false;
+          input.classList.add('border-red-500');
+        }
+
+        if (input.id === 'password' && input.value.length !== 8) {
+          isValid = false;
+          input.classList.add('border-red-500');
+        }
+
+        if (input.id === 'retypePassword') {
+          const password = form.querySelector('#password');
+          if (input.value !== password.value) {
+            isValid = false;
+            input.classList.add('border-red-500');
+          }
+        }
       }
     });
 
     if (!isValid) {
       event.preventDefault();
-      alert('Please fill in all required fields.');
+      alert('Please fill in all required fields correctly.');
     }
   });
 </script>

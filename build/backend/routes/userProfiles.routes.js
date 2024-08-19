@@ -177,7 +177,7 @@ router.post('/forgot-password', (req, res) => {
 
             const resetLink = `https://tranquillity-salon-website-production.up.railway.app/user/reset-password?token=${token}`;
             const mailOptions = {
-            from: '"Tranquillity Salon" <admin@tranquillitysalon.co.za>',
+            from: '"Tranquillity Salon" <info@tranquillitysalon.co.za>',
             to: email,
             subject: 'Password Reset - Tranquillity Salon',
             text: `You requested a password reset. Click the link to set a new password: ${resetLink}`,

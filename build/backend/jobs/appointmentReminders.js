@@ -36,7 +36,7 @@ async function sendAppointmentReminders() {
 
         for (const appointment of appointments) {
             const mailOptions = {
-                from: '"Tranquillity Salon" <admin@tranquillitysalon.co.za>',
+                from: '"Tranquillity Salon" <info@tranquillitysalon.co.za>',
                 to: appointment.Email,
                 subject: 'Appointment Reminder - Tranquillity Salon',
                 text: `Dear ${appointment.FirstName},

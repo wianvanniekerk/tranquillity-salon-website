@@ -17,15 +17,15 @@ router.post('/contact', async (req, res) => {
     const { name, email, message } = req.body;
 
     const mailOptionsTranquillity = {
-        from: '"Tranquillity Salon" <admin@tranquillitysalon.co.za>',
-        to: 'admin@tranquillitysalon.co.za',
+        from: '"Tranquillity Salon" <info@tranquillitysalon.co.za>',
+        to: 'info@tranquillitysalon.co.za',
         subject: 'Contact Form Submission',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
         html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong> ${message}</p>`
     };
 
     const mailOptionsUser = {
-        from: '"Tranquillity Salon" <admin@tranquillitysalon.co.za>',
+        from: '"Tranquillity Salon" <info@tranquillitysalon.co.za>',
         to: email,
         subject: 'Contact Form Submission',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,

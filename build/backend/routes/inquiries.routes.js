@@ -48,9 +48,13 @@ router.get('/contact', (req, res) => {
         return phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
     }
 
-    const query = 'SELECT * FROM Staff WHERE StaffID = 1 OR StaffID = 2';
+    const combinedQuery = `
+        SELECT * FROM Staff WHERE StaffID = 1 OR StaffID = 2
+        UNION
+        SELECT * FROM Staff WHERE StaffID = 3
+    `;
 
-    executeQuery(query, [], (error, staffMembers) => {
+    executeQuery(combinedQuery, [], (error, staffMembers) => {
         if (error) {
             req.flash('error', 'Unable to fetch staff information. Please try again.');
             return res.redirect('/');
@@ -64,5 +68,6 @@ router.get('/contact', (req, res) => {
         });
     });
 });
+
 
 module.exports = router;

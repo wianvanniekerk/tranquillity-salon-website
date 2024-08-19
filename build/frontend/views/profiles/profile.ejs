@@ -46,32 +46,13 @@
           <% } %>
         </div>
 
-        <!-- Skin Profile -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Skin Profile</h2>
-          <% if (clientSkinProfiles.length > 0) { %>
-            <ul class="space-y-4">
-              <% clientSkinProfiles.forEach(clientSkinProfile => { %>
-                <li class="border-b pb-2">
-                  <p class="text-gray-600"><strong>Skin Classification:</strong> <%= clientSkinProfile.SkinClassificationName %></p>
-                  <p class="text-gray-600"><strong>Allergies:</strong> <%= clientSkinProfile.Allergies %></p>
-                  <p class="text-gray-600"><strong>Last Analysis:</strong> <%= new Date(clientSkinProfile.LastAnalysisDate).toDateString() %></p>
-                  <p class="text-gray-600"><strong>Next Follow-up:</strong> <%= new Date(clientSkinProfile.NextFollowUpDate).toDateString() %></p>
-                </li>
-              <% }) %>
-            </ul>
-          <% } else { %>
-            <p class="text-gray-600">No skin profile details found.</p>
-          <% } %>
-        </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">Orders</h2>
           <% if (orders.length > 0) { %>
             <ul class="space-y-4">
               <% orders.forEach(order => { %>
                 <li class="border-b pb-2">
-                  <p class="text-gray-600"><strong>Date:</strong> <%= new Date(order.OrderDate).toDateString() %></p>
+                  <p class="text-gray-600"><strong>Date:</strong> <%= new Date(order.OrderDate).toLocaleString() %></p>
                   <p class="text-gray-600"><strong>Total Amount:</strong> R<%= order.TotalAmount.toFixed(2) %></p>
                   <p class="text-gray-600"><strong>Status:</strong> <%= order.Status %></p>
                 </li>
@@ -90,7 +71,6 @@
                 <li class="border-b pb-2">
                   <p class="text-gray-600"><strong>Product:</strong> <%= usage.ProductName %></p>
                   <p class="text-gray-600"><strong>Purchased:</strong> <%= new Date(usage.PurchaseDate).toDateString() %></p>
-                  <p class="text-gray-600"><strong>Estimated Finish:</strong> <%= new Date(usage.EstimatedFinishDate).toDateString() %></p>
                 </li>
               <% }) %>
             </ul>

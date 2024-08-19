@@ -34,14 +34,11 @@ router.post('/login', async (req, res) => {
             const isMatch = await bcrypt.compare(password, user.Password);
 
             if (!isMatch) {
-                console.log('Password mismatch');
                 return res.render('registration/login', { errorMessage: 'Invalid email or password.' });
             }
 
             req.session.userId = user.ClientID.toString();
             req.session.userType = user.UserType;
-
-            console.log('User logged in:', req.session);
 
             req.flash('success', 'You have logged in successfully!');
             const redirectTo = req.session.returnTo || '/user/profile';
